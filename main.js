@@ -1,20 +1,19 @@
-
 const form = document.querySelector('#form');
-form.addEventListener("submit", growTree);
+const treeContainer = document.querySelector('.tree-container');
 
-const userInput = {
-    height: document.querySelector('#height-input').value, 
-    character: document.querySelector('#character-input').value
-}
+form.addEventListener("submit", function growTree() {
 
-function growTree(object) {
-    let treeContainer = document.querySelector('.tree-container');
-    let text = "";
-
-    for (i = 0; i <= `${object.height}`; i ++) {
-        text += `${object.character}.repeat(i + (i + 1)) + "<br>"`;
+    event.preventDefault();
+    let tree = "";
+    const treeObject = {
+         height: document.querySelector('#height-input').value,
+         character: document.querySelector('#character-input').value
     }
 
-    console.log('text ', text);
-    treeContainer.innerHTML = text;
-}
+    for (i = 0; i <= treeObject.height; i++) {
+        tree += treeObject.character.repeat(i + (i + 1)) + "<br>";
+    }
+
+    treeContainer.innerHTML = `<div>${tree}</div>`;
+
+});
